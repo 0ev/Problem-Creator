@@ -9,6 +9,7 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js'></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body id="test">
@@ -25,6 +26,7 @@
     <i class="fas fa-link" v-bind:style="{color: actualSkin.color}" @click='change("bold")'></i>
     <i class="fas fa-image" v-bind:style="{color: actualSkin.color}" @click='change("bold")'></i>
     <i class="fas fa-quote-right" v-bind:style="{color: actualSkin.color}" @click='change("quote")'></i>
+    <div id="output"></div>
 
     <i class="fas fa-tint" v-bind:style="{color: actualSkin.color}" @click="showSettings" ></i>
   </div>
@@ -43,17 +45,11 @@
 <script src='./comp/vue.min.js'></script>
 <script  src="./script.js"></script>
 <script>
-  alert(1)
   MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']]
     }
   };
-  let html = MathJax.tex2chtml('\\sqrt{x^2+1}', {em: 12, ex: 6, display: false});
-  alert(html);
-  alert(1)
-</script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 </body>
 </html>

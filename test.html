@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>test</title>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    </head>
+    <body>
+        <h3>output:</h3>
+        <div id = output></div>
+        <input type="checkbox" id="display" checked="" onchange="convert()"> <label for="display">Display style</label>
+        <div></div>
+        <input type="button" value="Render TeX" id="render" onclick="convert()">
+        <input type="button" value="real TeX" id="render" onclick="realconvert()">
+
+    </body>
+    <script>
+        function convert() {
+            var display = document.getElementById("display");
+            var button = document.getElementById("render");
+            button.disabled = display.disabled = true;
+
+
+            input = `        <input type="checkbox" id="display" checked="" onchange="convert()"> <label for="display">Display style</label>
+        <div></div>
+        <input type="button" value="Render TeX" id="render" onclick="convert()">
+        <input type="button" value="real TeX" id="render" onclick="realconvert()">
+$hello \\pi \\phi$     $really$   <input type="checkbox" id="display" checked="" onchange="convert()"> <label for="display">Display style</label>
+        <div></div>
+        <input type="button" value="Render TeX" id="render" onclick="convert()">
+        <input type="button" value="real TeX" id="render" onclick="realconvert()">
+`
+            var lst = input.match(/\$.*?\$/)
+            console.log(lst)
+            console.log(lst.index)
+            output = document.getElementById('output');
+            console.log(output)
+            output.innerHTML = '';
+            MathJax.texReset();
+
+            var options = MathJax.getMetricsFor(output);
+            console.log(options)
+            options.display = display.checked;
+            var x = MathJax.tex2chtml(input, options)
+            
+            output.appendChild(x);
+            MathJax.startup.document.clear();
+            MathJax.startup.document.updateDocument();
+
+            button.disabled = display.disabled = false;
+
+        }
+        function realconvert(){
+            
+        }
+    </script>
+</html>
