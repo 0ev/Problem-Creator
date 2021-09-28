@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Problem Creator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://kit.fontawesome.com/7a96f40d59.js" crossorigin="anonymous"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js'></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body id="test">
+
+<div id="app-wall" v-bind:style="{backgroundColor: actualSkin.wall}">
+  <div id="toolbar">
+    <i class="fas fa-bold" v-bind:style="{color: actualSkin.color}" @click='change("bold")'></i>
+    <i class="fas fa-italic" v-bind:style="{color: actualSkin.color}" @click='change("italic")'></i>
+    <i class="fas fa-chevron-up" v-bind:style="{color: actualSkin.color}" @click='change("bold")'></i>
+    <i class="fas fa-chevron-down" v-bind:style="{color: actualSkin.color}" @click='change("bold")'></i>
+    <i class="fas fa-sort-numeric-down" v-bind:style="{color: actualSkin.color}" @click='change("order")'></i>
+    <i class="fas fa-ellipsis-v" v-bind:style="{color: actualSkin.color}" @click='change("unorder")'></i>
+    <i class="fas fa-grip-lines" v-bind:style="{color: actualSkin.color}" @click='change("horizontal")'></i>
+    <i class="fas fa-link" v-bind:style="{color: actualSkin.color}" @click='change("bold")'></i>
+    <i class="fas fa-image" v-bind:style="{color: actualSkin.color}" @click='change("bold")'></i>
+    <i class="fas fa-quote-right" v-bind:style="{color: actualSkin.color}" @click='change("quote")'></i>
+
+    <i class="fas fa-tint" v-bind:style="{color: actualSkin.color}" @click="showSettings" ></i>
+  </div>
+  <div id="app">
+    <div class="editor"> 
+      <textarea id="select" class="code" v-model="code" v-bind:style="{color: actualSkin.color}" onkeyup="MathJax.typeset()"></textarea>
+      <div class="result" v-html="compiledOutput"></div>
+      <div class="settings" v-bind:class="{'active': isSettings}"> 
+        <h2>Settings<i class="fas fa-times" @click="isSettings = false"></i></h2>
+        <h3>Editor Theme</h3>
+        <div class="skin" v-for="skin in skins" v-bind:class="{'active': skin.isActive}" v-bind:style="{background:skin.color}" @click="setSkin(skin)"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='./comp/vue.min.js'></script>
+<script  src="./script.js"></script>
+<script>
+  alert(1)
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  let html = MathJax.tex2chtml('\\sqrt{x^2+1}', {em: 12, ex: 6, display: false});
+  alert(html);
+  alert(1)
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+</body>
+</html>
